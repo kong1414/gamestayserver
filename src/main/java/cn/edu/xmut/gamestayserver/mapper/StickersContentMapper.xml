@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.edu.xmut.gamestayserver.dao.StickersContentMapper">
+  <resultMap id="BaseResultMap" type="cn.edu.xmut.gamestayserver.pojo.po.StickersContent">
+    <!--
+      WARNING - @mbg.generated
+    -->
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="from" jdbcType="VARCHAR" property="from" />
+    <result column="message" jdbcType="VARCHAR" property="message" />
+    <result column="titile_bg" jdbcType="VARCHAR" property="titileBg" />
+    <result column="title" jdbcType="VARCHAR" property="title" />
+    <result column="type" jdbcType="VARCHAR" property="type" />
+  </resultMap>
+</mapper>

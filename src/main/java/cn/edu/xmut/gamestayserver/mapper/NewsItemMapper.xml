@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.edu.xmut.gamestayserver.dao.NewsItemMapper">
+  <resultMap id="BaseResultMap" type="cn.edu.xmut.gamestayserver.pojo.po.NewsItem">
+    <!--
+      WARNING - @mbg.generated
+    -->
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="news_title" jdbcType="VARCHAR" property="newsTitle" />
+    <result column="news_picture" jdbcType="VARCHAR" property="newsPicture" />
+    <result column="news_type" jdbcType="VARCHAR" property="newsType" />
+    <result column="if_recommendation" jdbcType="INTEGER" property="ifRecommendation" />
+    <result column="if_recommendation_head" jdbcType="INTEGER" property="ifRecommendationHead" />
+  </resultMap>
+</mapper>
