@@ -6,7 +6,10 @@ import cn.edu.xmut.gamestayserver.pojo.vo.SuccessVO;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
 
 @Api(description = "主模块")
 @RestController
@@ -38,8 +41,8 @@ public class IndexController {
     }
 
     @ApiOperation(value = "贴吧")
-    @GetMapping("/getBlockStickersMapper")
-    public ResultVO getBlockStickersMapper(@RequestParam(defaultValue = "10") int num) {
+    @GetMapping("/getBlockStickers")
+    public ResultVO getBlockStickers(@RequestParam(defaultValue = "10") int num) {
         return new SuccessVO<>(blockStickersMapper.selectAll().subList(0, num), "");
     }
 
@@ -48,28 +51,28 @@ public class IndexController {
         return new SuccessVO<>(blockItemMapper.selectAll().subList(0, num), "");
     }
 
-    @GetMapping("/getCharactersItemMapper")
-    public ResultVO getCharactersItemMapper(@RequestParam(defaultValue = "10") int num) {
+    @GetMapping("/getCharactersItem")
+    public ResultVO getCharactersItem(@RequestParam(defaultValue = "10") int num) {
         return new SuccessVO<>(charactersItemMapper.selectAll().subList(0, num), "");
     }
 
     @GetMapping("/getGameMapper")
-    public ResultVO getGameMapper(@RequestParam(defaultValue = "10") int num) {
+    public ResultVO getGame(@RequestParam(defaultValue = "10") int num) {
         return new SuccessVO<>(gameMapper.selectAll().subList(0, num), "");
     }
 
-    @GetMapping("/getNewsItemMapper")
-    public ResultVO getNewsItemMapper(@RequestParam(defaultValue = "10") int num) {
+    @GetMapping("/getNewsItem")
+    public ResultVO getNewsItem(@RequestParam(defaultValue = "10") int num) {
         return new SuccessVO<>(newsItemMapper.selectAll().subList(0, num), "");
     }
 
-    @GetMapping("/getNewsContentMapper")
-    public ResultVO getNewsContentMapper(@RequestParam(defaultValue = "10") int num) {
+    @GetMapping("/getNewsContent")
+    public ResultVO getNewsContent(@RequestParam(defaultValue = "10") int num) {
         return new SuccessVO<>(newsContentMapper.selectAll().subList(0, num), "");
     }
 
-    @GetMapping("/getStickersContentMapper")
-    public ResultVO getStickersContentMapper(@RequestParam(defaultValue = "10") int num) {
+    @GetMapping("/getStickersContent")
+    public ResultVO getStickersContent(@RequestParam(defaultValue = "10") int num) {
         return new SuccessVO<>(stickersContentMapper.selectAll().subList(0, num), "");
     }
 }
