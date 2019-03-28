@@ -10,6 +10,6 @@
     <result column="name" jdbcType="VARCHAR" property="name" />
     <result column="type1" jdbcType="VARCHAR" property="type1" />
     <result column="type2" jdbcType="VARCHAR" property="type2" />
-    <result column="from" jdbcType="VARCHAR" property="from" />
+      <result column="come_from" jdbcType="VARCHAR" property="comeFrom"/>
   </resultMap>
 </mapper>

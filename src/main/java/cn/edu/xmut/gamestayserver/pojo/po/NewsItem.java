@@ -1,10 +1,7 @@
 package cn.edu.xmut.gamestayserver.pojo.po;
 
-import lombok.Data;
-
 import javax.persistence.*;
 
-@Data
 @Table(name = "news_item")
 public class NewsItem {
     @Id
@@ -20,9 +17,59 @@ public class NewsItem {
     @Column(name = "news_type")
     private String newsType;
 
-    @Column(name = "if_recommendation")
-    private Integer ifRecommendation;
+    /**
+     * @return id
+     */
+    public Integer getId() {
+        return id;
+    }
 
-    @Column(name = "if_recommendation_head")
-    private Integer ifRecommendationHead;
+    /**
+     * @param id
+     */
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    /**
+     * @return news_title
+     */
+    public String getNewsTitle() {
+        return newsTitle;
+    }
+
+    /**
+     * @param newsTitle
+     */
+    public void setNewsTitle(String newsTitle) {
+        this.newsTitle = newsTitle == null ? null : newsTitle.trim();
+    }
+
+    /**
+     * @return news_picture
+     */
+    public String getNewsPicture() {
+        return newsPicture;
+    }
+
+    /**
+     * @param newsPicture
+     */
+    public void setNewsPicture(String newsPicture) {
+        this.newsPicture = newsPicture == null ? null : newsPicture.trim();
+    }
+
+    /**
+     * @return news_type
+     */
+    public String getNewsType() {
+        return newsType;
+    }
+
+    /**
+     * @param newsType
+     */
+    public void setNewsType(String newsType) {
+        this.newsType = newsType == null ? null : newsType.trim();
+    }
 }

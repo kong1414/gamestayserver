@@ -9,7 +9,5 @@
     <result column="news_title" jdbcType="VARCHAR" property="newsTitle" />
     <result column="news_picture" jdbcType="VARCHAR" property="newsPicture" />
     <result column="news_type" jdbcType="VARCHAR" property="newsType" />
-    <result column="if_recommendation" jdbcType="INTEGER" property="ifRecommendation" />
-    <result column="if_recommendation_head" jdbcType="INTEGER" property="ifRecommendationHead" />
   </resultMap>
 </mapper>

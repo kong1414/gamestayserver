@@ -1,13 +1,10 @@
 package cn.edu.xmut.gamestayserver.pojo.po;
 
-import lombok.Data;
-
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
-@Data
 @Table(name = "account")
 public class Account {
     @Id
