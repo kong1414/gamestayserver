@@ -1,6 +1,7 @@
 package cn.edu.xmut.gamestayserver.controller;
 
 import cn.edu.xmut.gamestayserver.dao.*;
+import cn.edu.xmut.gamestayserver.pojo.po.BlockItem;
 import cn.edu.xmut.gamestayserver.pojo.vo.ResultVO;
 import cn.edu.xmut.gamestayserver.pojo.vo.SuccessVO;
 import io.swagger.annotations.Api;
@@ -10,6 +11,9 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import tk.mybatis.mapper.entity.Example;
+
+import java.util.List;
 
 @Api(description = "主模块")
 @RestController
@@ -49,6 +53,23 @@ public class IndexController {
     @GetMapping("/getBlockItem")
     public ResultVO getBlockItem(@RequestParam(defaultValue = "10") int num) {
         return new SuccessVO<>(blockItemMapper.selectAll().subList(0, num), "");
+    }
+
+    @ApiOperation(value = "根据type返回数据BlockItem（全部）")
+    @GetMapping("/getBlockItemByType")
+    public ResultVO getBlockItemByType(@RequestParam(required = false) List<String> type) {
+        List<BlockItem> list;
+        if (type == null || type.size() == 0) {
+            list = blockItemMapper.selectAll();
+        } else {
+            BlockItem blockItem = new BlockItem();
+            Example example = new Example(BlockItem.class);
+            Example.Criteria criteria = example.createCriteria();
+            criteria.andIn("type", type);
+            list = blockItemMapper.selectByExample(example);
+        }
+
+        return new SuccessVO<>(list, "");
     }
 
     @GetMapping("/getCharactersItem")
