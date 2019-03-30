@@ -2,6 +2,7 @@ package cn.edu.xmut.gamestayserver.controller;
 
 import cn.edu.xmut.gamestayserver.dao.*;
 import cn.edu.xmut.gamestayserver.pojo.po.BlockItem;
+import cn.edu.xmut.gamestayserver.pojo.po.Game;
 import cn.edu.xmut.gamestayserver.pojo.po.NewsContent;
 import cn.edu.xmut.gamestayserver.pojo.po.NewsItem;
 import cn.edu.xmut.gamestayserver.pojo.vo.ResultVO;
@@ -84,6 +85,15 @@ public class IndexController {
     @GetMapping("/getGameMapper")
     public ResultVO getGame(@RequestParam(defaultValue = "10") int num) {
         return new SuccessVO<>(gameMapper.selectAll().subList(0, num), "");
+    }
+
+    @ApiOperation("根据name返回数据（单条）Game")
+    @GetMapping("/getGameMapperByName")
+    public ResultVO getGameMapperByName(@RequestParam String name) {
+        Game game = new Game();
+        game.setName(name);
+        Game res = gameMapper.selectOne(game);
+        return new SuccessVO<>(res, "");
     }
 
     @GetMapping("/getNewsItem")
