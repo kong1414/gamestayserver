@@ -4,6 +4,7 @@ import cn.edu.xmut.gamestayserver.dao.*;
 import cn.edu.xmut.gamestayserver.pojo.po.*;
 import cn.edu.xmut.gamestayserver.pojo.vo.ResultVO;
 import cn.edu.xmut.gamestayserver.pojo.vo.SuccessVO;
+import cn.edu.xmut.gamestayserver.service.IndexService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -40,6 +41,10 @@ public class IndexController {
     @Autowired
     private StickersContentMapper stickersContentMapper;
 
+
+    @Autowired
+    IndexService indexService;
+
     @ApiOperation(value = "")
     @GetMapping("/getAccount")
     public ResultVO getAccount(@RequestParam(defaultValue = "10") int num) {
@@ -61,7 +66,6 @@ public class IndexController {
         List<BlockStickers> list = blockStickersMapper.select(blockStickers);
         return new SuccessVO<>(list, "");
     }
-
 
 
     @GetMapping("/getBlockItem")
@@ -88,6 +92,12 @@ public class IndexController {
     @GetMapping("/getCharactersItem")
     public ResultVO getCharactersItem(@RequestParam(defaultValue = "10") int num) {
         return new SuccessVO<>(charactersItemMapper.selectAll().subList(0, num), "");
+    }
+
+    @ApiOperation("根据come_from返回数据，包括type1和type2的种类集合CharactersItem")
+    @GetMapping("/getCharactersItemByComeFrom")
+    public ResultVO getCharactersItemByComeFrom(@RequestParam String comeFrom) {
+        return indexService.getType(comeFrom);
     }
 
     @GetMapping("/getGameMapper")

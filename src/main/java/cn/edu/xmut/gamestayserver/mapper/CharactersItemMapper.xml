@@ -1,15 +1,25 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="cn.edu.xmut.gamestayserver.dao.CharactersItemMapper">
-  <resultMap id="BaseResultMap" type="cn.edu.xmut.gamestayserver.pojo.po.CharactersItem">
-    <!--
-      WARNING - @mbg.generated
-    -->
-    <id column="id" jdbcType="INTEGER" property="id" />
-    <result column="profile" jdbcType="VARCHAR" property="profile" />
-    <result column="name" jdbcType="VARCHAR" property="name" />
-    <result column="type1" jdbcType="VARCHAR" property="type1" />
-    <result column="type2" jdbcType="VARCHAR" property="type2" />
-      <result column="come_from" jdbcType="VARCHAR" property="comeFrom"/>
-  </resultMap>
+    <resultMap id="BaseResultMap" type="cn.edu.xmut.gamestayserver.pojo.po.CharactersItem">
+        <!--
+          WARNING - @mbg.generated
+        -->
+        <id column="id" jdbcType="INTEGER" property="id"/>
+        <result column="profile" jdbcType="VARCHAR" property="profile"/>
+        <result column="name" jdbcType="VARCHAR" property="name"/>
+        <result column="type1" jdbcType="VARCHAR" property="type1"/>
+        <result column="type2" jdbcType="VARCHAR" property="type2"/>
+        <result column="come_from" jdbcType="VARCHAR" property="comeFrom"/>
+    </resultMap>
+    <select id="getTypeOne" parameterType="java.lang.String" resultType="java.util.HashMap">
+        SELECT DISTINCT characters_item.type1
+        FROM characters_item
+        WHERE come_from = #{comeFrom}
+    </select>
+    <select id="getTypeTwo" parameterType="java.lang.String" resultType="java.util.HashMap">
+        SELECT DISTINCT characters_item.type2
+        FROM characters_item
+        WHERE come_from = #{comeFrom}
+    </select>
 </mapper>
