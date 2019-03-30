@@ -100,6 +100,19 @@ public class IndexController {
         return indexService.getType(comeFrom);
     }
 
+    @ApiOperation("获取角色 详细信息，根据come_from,type1，type2返回数据")
+    @GetMapping("/getCharacters")
+    public ResultVO getCharactersItem(@RequestParam String comeFrom,
+                                      @RequestParam List<String> type1,
+                                      @RequestParam List<String> type2) {
+        Example example = new Example(CharactersItem.class);
+        example.createCriteria();
+        example.and().andIn("type1", type1);
+        example.and().andIn("type2", type2);
+        List<CharactersItem> list = charactersItemMapper.selectByExample(example);
+        return new SuccessVO<>(list, "");
+    }
+
     @GetMapping("/getGameMapper")
     public ResultVO getGame(@RequestParam(defaultValue = "10") int num) {
         return new SuccessVO<>(gameMapper.selectAll().subList(0, num), "");
