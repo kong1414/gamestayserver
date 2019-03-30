@@ -2,6 +2,7 @@ package cn.edu.xmut.gamestayserver.controller;
 
 import cn.edu.xmut.gamestayserver.dao.*;
 import cn.edu.xmut.gamestayserver.pojo.po.BlockItem;
+import cn.edu.xmut.gamestayserver.pojo.po.NewsContent;
 import cn.edu.xmut.gamestayserver.pojo.vo.ResultVO;
 import cn.edu.xmut.gamestayserver.pojo.vo.SuccessVO;
 import io.swagger.annotations.Api;
@@ -68,10 +69,8 @@ public class IndexController {
             criteria.andIn("type", type);
             list = blockItemMapper.selectByExample(example);
         }
-
         return new SuccessVO<>(list, "");
     }
-
     @GetMapping("/getCharactersItem")
     public ResultVO getCharactersItem(@RequestParam(defaultValue = "10") int num) {
         return new SuccessVO<>(charactersItemMapper.selectAll().subList(0, num), "");
@@ -90,6 +89,15 @@ public class IndexController {
     @GetMapping("/getNewsContent")
     public ResultVO getNewsContent(@RequestParam(defaultValue = "10") int num) {
         return new SuccessVO<>(newsContentMapper.selectAll().subList(0, num), "");
+    }
+
+    @ApiOperation(value = "根据title获取数据NewsContent")
+    @GetMapping("/getNewsContentByTitle")
+    public ResultVO getNewsContentByTitle(@RequestParam String title) {
+        NewsContent newsContent = new NewsContent();
+        newsContent.setTitle(title);
+        NewsContent res = newsContentMapper.selectOne(newsContent);
+        return new SuccessVO<>(res, "");
     }
 
     @GetMapping("/getStickersContent")
