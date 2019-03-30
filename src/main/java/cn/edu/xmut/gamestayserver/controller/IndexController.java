@@ -155,4 +155,13 @@ public class IndexController {
     public ResultVO getStickersContent(@RequestParam(defaultValue = "10") int num) {
         return new SuccessVO<>(stickersContentMapper.selectAll().subList(0, num), "");
     }
+
+    @ApiOperation("根据come_from回数据StickersContent")
+    @GetMapping("/getStickersContentByComeFrom")
+    public ResultVO getStickersContent(@RequestParam String comeFrom, @RequestParam(defaultValue = "10") int num) {
+        StickersContent stickersContent = new StickersContent();
+        stickersContent.setComeFrom(comeFrom);
+        List<StickersContent> res = stickersContentMapper.select(stickersContent);
+        return new SuccessVO<>(res.subList(0, num), "");
+    }
 }
