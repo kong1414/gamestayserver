@@ -1,10 +1,7 @@
 package cn.edu.xmut.gamestayserver.controller;
 
 import cn.edu.xmut.gamestayserver.dao.*;
-import cn.edu.xmut.gamestayserver.pojo.po.BlockItem;
-import cn.edu.xmut.gamestayserver.pojo.po.Game;
-import cn.edu.xmut.gamestayserver.pojo.po.NewsContent;
-import cn.edu.xmut.gamestayserver.pojo.po.NewsItem;
+import cn.edu.xmut.gamestayserver.pojo.po.*;
 import cn.edu.xmut.gamestayserver.pojo.vo.ResultVO;
 import cn.edu.xmut.gamestayserver.pojo.vo.SuccessVO;
 import io.swagger.annotations.Api;
@@ -43,18 +40,29 @@ public class IndexController {
     @Autowired
     private StickersContentMapper stickersContentMapper;
 
-    @ApiOperation(value = "账户")
+    @ApiOperation(value = "")
     @GetMapping("/getAccount")
     public ResultVO getAccount(@RequestParam(defaultValue = "10") int num) {
 
         return new SuccessVO<>(accountMapper.selectAll().subList(0, num), "");
     }
 
-    @ApiOperation(value = "贴吧")
+    @ApiOperation(value = "")
     @GetMapping("/getBlockStickers")
     public ResultVO getBlockStickers(@RequestParam(defaultValue = "10") int num) {
         return new SuccessVO<>(blockStickersMapper.selectAll().subList(0, num), "");
     }
+
+    @ApiOperation(value = "根据come_from返回数据（全部）BlockStickers")
+    @GetMapping("/getBlockStickersByComeFrom")
+    public ResultVO getBlockStickersByComeFrom(@RequestParam String comeFrom) {
+        BlockStickers blockStickers = new BlockStickers();
+        blockStickers.setComeFrom(comeFrom);
+        List<BlockStickers> list = blockStickersMapper.select(blockStickers);
+        return new SuccessVO<>(list, "");
+    }
+
+
 
     @GetMapping("/getBlockItem")
     public ResultVO getBlockItem(@RequestParam(defaultValue = "10") int num) {
