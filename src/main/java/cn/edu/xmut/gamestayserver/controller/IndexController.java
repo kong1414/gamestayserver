@@ -113,14 +113,14 @@ public class IndexController {
         return new SuccessVO<>(list, "");
     }
 
-    @GetMapping("/getGameMapper")
+    @GetMapping("/getGame")
     public ResultVO getGame(@RequestParam(defaultValue = "10") int num) {
         return new SuccessVO<>(gameMapper.selectAll().subList(0, num), "");
     }
 
     @ApiOperation("根据name返回数据（单条）Game")
-    @GetMapping("/getGameMapperByName")
-    public ResultVO getGameMapperByName(@RequestParam String name) {
+    @GetMapping("/getGameByName")
+    public ResultVO getGameByName(@RequestParam String name) {
         Game game = new Game();
         game.setName(name);
         Game res = gameMapper.selectOne(game);

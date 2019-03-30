@@ -8,7 +8,6 @@
     <id column="id" jdbcType="INTEGER" property="id" />
     <result column="profile" jdbcType="VARCHAR" property="profile" />
     <result column="name" jdbcType="VARCHAR" property="name" />
-    <result column="introduce" jdbcType="VARCHAR" property="introduce" />
     <result column="background" jdbcType="VARCHAR" property="background" />
   </resultMap>
 </mapper>
