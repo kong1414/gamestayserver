@@ -3,6 +3,7 @@ package cn.edu.xmut.gamestayserver.controller;
 import cn.edu.xmut.gamestayserver.dao.*;
 import cn.edu.xmut.gamestayserver.pojo.po.BlockItem;
 import cn.edu.xmut.gamestayserver.pojo.po.NewsContent;
+import cn.edu.xmut.gamestayserver.pojo.po.NewsItem;
 import cn.edu.xmut.gamestayserver.pojo.vo.ResultVO;
 import cn.edu.xmut.gamestayserver.pojo.vo.SuccessVO;
 import io.swagger.annotations.Api;
@@ -14,7 +15,10 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import tk.mybatis.mapper.entity.Example;
 
+import java.util.HashSet;
 import java.util.List;
+import java.util.Random;
+import java.util.Set;
 
 @Api(description = "主模块")
 @RestController
@@ -71,6 +75,7 @@ public class IndexController {
         }
         return new SuccessVO<>(list, "");
     }
+
     @GetMapping("/getCharactersItem")
     public ResultVO getCharactersItem(@RequestParam(defaultValue = "10") int num) {
         return new SuccessVO<>(charactersItemMapper.selectAll().subList(0, num), "");
@@ -85,6 +90,34 @@ public class IndexController {
     public ResultVO getNewsItem(@RequestParam(defaultValue = "10") int num) {
         return new SuccessVO<>(newsItemMapper.selectAll().subList(0, num), "");
     }
+
+    @ApiOperation("随机返回count(默认20条)条数据NewsItem")
+    @GetMapping("/getNewsItemByRandom")
+    public ResultVO getNewsItemByRandom(@RequestParam(defaultValue = "20") int count) {
+        List<NewsItem> list = newsItemMapper.selectAll();
+        Set<NewsItem> set = new HashSet<NewsItem>();
+        Random random = new Random();
+        int i;
+        while (true) {
+            i = random.nextInt(list.size());
+            set.add(list.get(i));
+            if (set.size() >= count) {
+                break;
+            }
+        }
+        return new SuccessVO<>(set, "");
+    }
+
+
+    @ApiOperation("根据news_type返回20条数据NewsItem")
+    @GetMapping("/getNewsItemByNewsType")
+    public ResultVO getNewsItemByNewsType(@RequestParam String newsType) {
+        NewsItem newsItem = new NewsItem();
+        newsItem.setNewsType(newsType);
+        List<NewsItem> list = newsItemMapper.select(newsItem);
+        return new SuccessVO<>(list, "");
+    }
+
 
     @GetMapping("/getNewsContent")
     public ResultVO getNewsContent(@RequestParam(defaultValue = "10") int num) {
