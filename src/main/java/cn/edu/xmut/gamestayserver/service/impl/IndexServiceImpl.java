@@ -1,6 +1,7 @@
 package cn.edu.xmut.gamestayserver.service.impl;
 
 import cn.edu.xmut.gamestayserver.dao.CharactersItemMapper;
+import cn.edu.xmut.gamestayserver.pojo.po.CharactersItem;
 import cn.edu.xmut.gamestayserver.pojo.vo.CharactersItemRes;
 import cn.edu.xmut.gamestayserver.pojo.vo.ResultVO;
 import cn.edu.xmut.gamestayserver.pojo.vo.SuccessVO;
@@ -25,6 +26,11 @@ public class IndexServiceImpl implements IndexService {
         res.setComeFrom(comeFrom);
         res.setType1List(list1);
         res.setType2List(list2);
+
+        CharactersItem record = new CharactersItem();
+        record.setComeFrom(comeFrom);
+        List<CharactersItem> list = charactersItemMapper.select(record);
+        res.setCharactersList(list);
         return new SuccessVO(res, "");
     }
 }

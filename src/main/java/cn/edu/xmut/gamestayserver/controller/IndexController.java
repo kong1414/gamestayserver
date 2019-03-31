@@ -94,7 +94,8 @@ public class IndexController {
         return new SuccessVO<>(charactersItemMapper.selectAll().subList(0, num), "");
     }
 
-    @ApiOperation("根据come_from返回数据，包括type1和type2的种类集合CharactersItem")
+    @ApiOperation("根据come_from返回数据，包括type1和type2的种类集合CharactersItem" +
+            "以及角色列表CharactersList")
     @GetMapping("/getCharactersItemByComeFrom")
     public ResultVO getCharactersItemByComeFrom(@RequestParam String comeFrom) {
         return indexService.getType(comeFrom);
