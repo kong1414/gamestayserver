@@ -11,6 +11,7 @@
         <result column="type1" jdbcType="VARCHAR" property="type1"/>
         <result column="type2" jdbcType="VARCHAR" property="type2"/>
         <result column="come_from" jdbcType="VARCHAR" property="comeFrom"/>
+        <result column="url" jdbcType="VARCHAR" property="url"/>
     </resultMap>
     <select id="getTypeOne" parameterType="java.lang.String" resultType="java.util.HashMap">
         SELECT DISTINCT characters_item.type1
