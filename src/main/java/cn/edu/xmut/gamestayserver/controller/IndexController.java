@@ -103,14 +103,17 @@ public class IndexController {
 
     @ApiOperation("获取角色 详细信息，根据come_from,type1，type2返回数据")
     @GetMapping("/getCharacters")
-    public ResultVO getCharactersItem(@RequestParam String comeFrom,
-                                      @RequestParam List<String> type1,
-                                      @RequestParam List<String> type2) {
+    public ResultVO getCharacters(@RequestParam String comeFrom,
+                                  @RequestParam List<String> type1,
+                                  @RequestParam List<String> type2) {
         Example example = new Example(CharactersItem.class);
         example.createCriteria();
         example.and().andIn("type1", type1);
         example.and().andIn("type2", type2);
         List<CharactersItem> list = charactersItemMapper.selectByExample(example);
+        if (list.isEmpty() || list == null) {
+            return new SuccessVO<>(null, "");
+        }
         return new SuccessVO<>(list, "");
     }
 

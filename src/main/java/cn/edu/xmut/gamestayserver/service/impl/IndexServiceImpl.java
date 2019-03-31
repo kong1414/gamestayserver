@@ -31,6 +31,7 @@ public class IndexServiceImpl implements IndexService {
         record.setComeFrom(comeFrom);
         List<CharactersItem> list = charactersItemMapper.select(record);
         res.setCharactersList(list);
+
         return new SuccessVO(res, "");
     }
 }
