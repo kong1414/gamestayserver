@@ -108,6 +108,7 @@ public class IndexController {
                                   @RequestParam(required = false) List<String> type2) {
         Example example = new Example(CharactersItem.class);
         example.createCriteria();
+        example.and().andEqualTo("comeFrom", comeFrom);
         if (type1 == null || !type1.isEmpty()) {
             example.and().andIn("type1", type1);
         }
