@@ -51,13 +51,7 @@ public class IndexController {
 
         return new SuccessVO<>(accountMapper.selectAll().subList(0, num), "");
     }
-
-    @ApiOperation(value = "hello")
-    @GetMapping("/hello")
-    public String hello() {
-        return "hellp";
-    }
-
+    
     @ApiOperation(value = "")
     @GetMapping("/getBlockStickers")
     public ResultVO getBlockStickers(@RequestParam(defaultValue = "10") int num) {
