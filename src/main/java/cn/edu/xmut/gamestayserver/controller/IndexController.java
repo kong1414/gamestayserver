@@ -25,8 +25,6 @@ import java.util.Set;
 public class IndexController {
 
     @Autowired
-    private AccountMapper accountMapper;
-    @Autowired
     private BlockItemMapper blockItemMapper;
     @Autowired
     private BlockStickersMapper blockStickersMapper;
@@ -44,13 +42,6 @@ public class IndexController {
 
     @Autowired
     IndexService indexService;
-
-    @ApiOperation(value = "")
-    @GetMapping("/getAccount")
-    public ResultVO getAccount(@RequestParam(defaultValue = "10") int num) {
-
-        return new SuccessVO<>(accountMapper.selectAll().subList(0, num), "");
-    }
     
     @ApiOperation(value = "")
     @GetMapping("/getBlockStickers")
